@@ -3,7 +3,7 @@ Type: Package
 Title: Fatality Analysis Reporting System
 Version: 0.1.0
 Author: Oluwaseun Gakenou <holuwaseun25@gmail.com>
-Maintainer:  Oluwaseun Gakenou <holuwaseun25@gmail.com>
+Maintainer: Oluwaseun Gakenou <holuwaseun25@gmail.com>
 Description: plots a map of motor accidents occurrence by state and year.
 License: GPL_3
 Encoding: UTF-8
@@ -13,4 +13,10 @@ Imports:
     dplyr,
     readr,
     maps,
-    tidyr
+    tidyr,
+    magrittr,
+    graphics
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
