@@ -1,9 +1,10 @@
 ---
-title: "My_Vignette"
+title: "FARS"
 author: "Oluwaseun Gakenou"
+date: "2020-08-08"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{My_Vignette}
+  %\VignetteIndexEntry{FARS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,6 +16,38 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r global_options}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
 library(fars)
+```
+
+To read files or path from the system into the package. Error occurs if filename does not exist
+```{r}
+library(readr)
+library(dplyr)
+
+fars_read("accident_2013.csv")
+```
+
+To create filename for a particular year
+```{r}
+filename<- make_filename(2013)
+```
+
+In order to create a dataframe containing list of years and month from the file imported
+PS: returns NULL if year is invalid
+```{r}
+fars_read_years(as.list(2000, 2001, 2002))
+```
+
+In order to reduce data to a yearly time step
+```{r}
+ fars_summarize_years(c(2013, 2014, 2015, 2018))
+```
+
+In order to create a map plotted with latitude and longitude for different state per year using unique state number
+Ps: error occurs if state number is invalid and returns NULL if state number == 0
+```{r}
+  fars_map_state(12, 2013)
 ```

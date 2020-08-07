@@ -16,5 +16,5 @@ A dataframe from \code{\link{tbl_df}}
 Title A simple function for reading files or path from the system into the package
 }
 \examples{
-fars_read("accident_2013.csv.bz2")
+fars_read("accident_2013.csv")
 }
