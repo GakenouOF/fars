@@ -4,7 +4,3 @@ language: R
 cache: packages
 
 
-r:
- -3.7
- -release
- -devel
