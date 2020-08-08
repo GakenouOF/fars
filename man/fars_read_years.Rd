@@ -18,5 +18,5 @@ A dataframe containing list of Year by month or return NULL if \code{year} is in
 Title A simple function for reading years data from the file imported
 }
 \examples{
-fars_read_years(years = 2013)
+fars_read_years(years = c(2013,2014,2015))
 }

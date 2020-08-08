@@ -16,5 +16,5 @@ A dataframe with the total monthly number of occurrence in each year
 Title Function for summarizing the data by years
 }
 \examples{
-fars_summarize_years(c(2013, 2014, 2015, 2018))
+fars_summarize_years(years = c(2013, 2014, 2015))
 }

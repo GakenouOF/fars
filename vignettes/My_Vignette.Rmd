@@ -43,17 +43,18 @@ make_filename(2013)
 In order to create a dataframe containing list of years and month from the file imported
 PS: returns NULL if year is invalid
 ```{r}
-fars_read_years(years = c(2013:2018))
+fars_read_years(years = c(2013,2014,2015))
 ```
 
 In order to reduce data to a yearly time step
 ```{r}
 library(dplyr)
- fars_summarize_years(years = c(2013:2018))
+ fars_summarize_years(years = c(2013,2014,2015))
 ```
 
 In order to create a map plotted with latitude and longitude for different state per year using unique state number
 Ps: error occurs if state number is invalid and returns NULL if state number == 0
 ```{r}
+library(maps)
   fars_map_state(6, 2013)
 ```

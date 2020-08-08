@@ -19,7 +19,7 @@ stops if \code{state.num} is invalid, returns "invalid STATE number"
 Title Function for creating a map of occurrence by state and year
 }
 \examples{
-fars_map_state(12, 2013)
+fars_map_state(6, 2013)
 \dontrun{
 fars_map_state(0, 2013)
 }

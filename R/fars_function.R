@@ -48,7 +48,7 @@ make_filename <- function(year) {
 #' @export
 #'
 #' @examples
-#' fars_read_years(years = 2013)
+#' fars_read_years(years = c(2013,2014,2015))
 
 fars_read_years <- function(years) {
   lapply(years, function(year) {
@@ -68,7 +68,7 @@ fars_read_years <- function(years) {
 #'
 #' @param years A numeric vector with list of years
 #'
-#' @importFrom dplyr bind_rows group_by summarize
+#' @importFrom dplyr bind_rows group_by summarise
 #' @importFrom tidyr spread
 #' @importFrom magrittr %>%
 #'
@@ -76,7 +76,7 @@ fars_read_years <- function(years) {
 #' @export
 #'
 #' @examples
-#' fars_summarize_years(c(2013, 2014, 2015, 2018))
+#' fars_summarize_years(years = c(2013, 2014, 2015))
 
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
@@ -100,7 +100,7 @@ fars_summarize_years <- function(years) {
 #' @export
 #'
 #' @examples
-#' fars_map_state(12, 2013)
+#' fars_map_state(6, 2013)
 #' \dontrun{
 #' fars_map_state(0, 2013)
 #' }
