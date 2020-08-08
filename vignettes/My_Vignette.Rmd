@@ -20,6 +20,11 @@ knitr::opts_chunk$set(
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 library(fars)
+library(dplyr)
+library(tidyr)
+library(magrittr)
+library(maps)
+library(graphics)
 ```
 
 To read files or path from the system into the package. Error occurs if filename does not exist
@@ -32,18 +37,19 @@ fars_read(filename = accident_2013)
 
 To create filename for a particular year
 ```{r}
-filename<- make_filename(2013)
+make_filename(2013)
 ```
 
 In order to create a dataframe containing list of years and month from the file imported
 PS: returns NULL if year is invalid
 ```{r}
-fars_read_years(2013)
+fars_read_years(years = c(2013:2018))
 ```
 
 In order to reduce data to a yearly time step
 ```{r}
- fars_summarize_years(2013)
+library(dplyr)
+ fars_summarize_years(years = c(2013:2018))
 ```
 
 In order to create a map plotted with latitude and longitude for different state per year using unique state number

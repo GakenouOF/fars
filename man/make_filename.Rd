@@ -16,5 +16,5 @@ A string which is the created filename for a particular year
 Title A simple formatting function to create a filename which contains a formatted combination of input values
 }
 \examples{
-filename<- make_filename(2013)
+make_filename(2013)
 }

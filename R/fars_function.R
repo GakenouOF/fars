@@ -29,11 +29,11 @@ fars_read <- function(filename) {
 #' @export
 #'
 #' @examples
-#' filename<- make_filename(2013)
+#' make_filename(2013)
 
 make_filename <- function(year) {
   year <- as.integer(year)
-  sprintf("accident_%d.csv.bz2", year)
+  sprintf("accident_%d.csv", year)
 }
 
 #' Title A simple function for reading years data from the file imported
@@ -48,16 +48,15 @@ make_filename <- function(year) {
 #' @export
 #'
 #' @examples
-#' fars_read_years(2018)
-#' fars_read_years(as.list(2000, 2001, 2002))
+#' fars_read_years(years = 2013)
 
 fars_read_years <- function(years) {
   lapply(years, function(year) {
     file <- make_filename(year)
     tryCatch({
       dat <- fars_read(filename)
-      dplyr::mutate(dat, YEAR = YEAR) %>%
-        dplyr::select(MONTH, YEAR)
+      dplyr::mutate(dat, year = year) %>%
+        dplyr::select(MONTH, year)
     }, error = function(e) {
       warning("invalid year: ", year)
       return(NULL)
@@ -82,9 +81,9 @@ fars_read_years <- function(years) {
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
   dplyr::bind_rows(dat_list) %>%
-    dplyr::group_by(YEAR, MONTH) %>%
-    dplyr::summarize(n = n()) %>%
-    tidyr::spread(YEAR, n)
+    dplyr::group_by(year, MONTH) %>%
+    dplyr::summarise(n = n()) %>%
+    tidyr::spread(year, n)
 }
 
 #' Title Function for creating a map of occurrence by state and year
