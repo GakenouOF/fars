@@ -10,11 +10,12 @@ fars_read(filename)
 \item{filename}{A character string containing the name of the file or path to be read. An errors occurs if filename does not exist}
 }
 \value{
-A dataframe from \code{\link{tbl_df}}
+A dataframe from \code{\link{as_tibble}}
 }
 \description{
 Title A simple function for reading files or path from the system into the package
 }
 \examples{
+accident_2013 <- system.file("extdata", "accident_2013.csv", package = "fars")
 fars_read("accident_2013.csv")
 }

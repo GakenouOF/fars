@@ -2,13 +2,14 @@
 #'
 #' @param filename A character string containing the name of the file or path to be read. An errors occurs if filename does not exist
 #'
-#' @importFrom dplyr tbl_df
+#' @importFrom tibble as_tibble
 #' @importFrom readr read_csv
 #'
-#' @return A dataframe from \code{\link{tbl_df}}
+#' @return A dataframe from \code{\link{as_tibble}}
 #' @export
 #'
 #' @examples
+#' accident_2013 <- system.file("extdata", "accident_2013.csv", package = "fars")
 #' fars_read("accident_2013.csv")
 
 fars_read <- function(filename) {
@@ -17,7 +18,7 @@ fars_read <- function(filename) {
   data <- suppressMessages({
     readr::read_csv(filename, progress = FALSE)
   })
-  dplyr::tbl_df(data)
+  tibble::as_tibble(data)
 }
 
 #' Title A simple formatting function to create a filename which contains a formatted combination of input values
@@ -38,7 +39,7 @@ make_filename <- function(year) {
 #' Title A simple function for reading years data from the file imported
 #'
 #' @param years A numeric vector containing list of years
-#' @param year An integer
+#' @param year An integer from \code{\link{year}}
 #'
 #' @importFrom dplyr mutate select
 #' @importFrom magrittr %>%
@@ -54,9 +55,9 @@ fars_read_years <- function(years) {
   lapply(years, function(year) {
     file <- make_filename(year)
     tryCatch({
-      dat <- fars_read(file)
-      dplyr::mutate(dat, year = year) %>%
-        dplyr::select(MONTH, year)
+      dat <- fars_read(filename)
+      dplyr::mutate(dat, YEAR = YEAR) %>%
+        dplyr::select(MONTH, YEAR)
     }, error = function(e) {
       warning("invalid year: ", year)
       return(NULL)
@@ -81,15 +82,15 @@ fars_read_years <- function(years) {
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
   dplyr::bind_rows(dat_list) %>%
-    dplyr::group_by(year, MONTH) %>%
+    dplyr::group_by(YEAR, MONTH) %>%
     dplyr::summarize(n = n()) %>%
-    tidyr::spread(year, n)
+    tidyr::spread(YEAR, n)
 }
 
 #' Title Function for creating a map of occurrence by state and year
 #'
 #' @param state.num An integer containing unique state numbers
-#' @param year An integer
+#' @param year An integer from \code{\link{year}}
 #'
 #' @importFrom dplyr filter
 #' @importFrom maps map

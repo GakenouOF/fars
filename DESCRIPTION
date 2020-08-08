@@ -15,7 +15,8 @@ Imports:
     maps,
     tidyr,
     magrittr,
-    graphics
+    graphics,
+    tibble
 Suggests: 
     knitr,
     rmarkdown

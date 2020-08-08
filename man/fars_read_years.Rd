@@ -9,7 +9,7 @@ fars_read_years(years)
 \arguments{
 \item{years}{A numeric vector containing list of years}
 
-\item{year}{An integer}
+\item{year}{An integer from \code{\link{year}}}
 }
 \value{
 A dataframe containing list of Year by month or return NULL if \code{year} is invalid

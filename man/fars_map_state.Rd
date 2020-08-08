@@ -9,7 +9,7 @@ fars_map_state(state.num, year)
 \arguments{
 \item{state.num}{An integer containing unique state numbers}
 
-\item{year}{An integer}
+\item{year}{An integer from \code{\link{year}}}
 }
 \value{
 A map based on plots by latitude and longitude or Returns NULL if \code{data.sub}==0
